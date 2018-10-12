@@ -15,6 +15,9 @@ using System.Threading;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
 using System.Text;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
+using unirest_net.http;
+using OpenTextSummarizer;
+using System.IO;
 
 namespace ICH_Assist.Controllers
 {
@@ -46,8 +49,24 @@ namespace ICH_Assist.Controllers
         [HttpPost]
         public async Task<ActionResult> Process(string para, string question)
         {
+            
+            StreamWriter sw1 = new StreamWriter(Server.MapPath(@"~\Content\SampleText.txt"));
+            sw1.Flush();
+            sw1.Close();
+            StreamWriter sw2 = new StreamWriter(Server.MapPath(@"~\Content\SampleText.txt"));
+            sw2.Write(para);
+            sw2.Close();
+            var summarizedDocument = OpenTextSummarizer.Summarizer.Summarize(
+                new OpenTextSummarizer.FileContentProvider(Server.MapPath(@"~\Content\SampleText.txt")),
+                new SummarizerArguments()
+                {
+                    Language = "datasets",
+                    MaxSummarySentences = 500
+                });
 
+            //SummarizedDocument doc = Summarizer.Summarize(sumargs);
 
+            //string summary = string.Join("\r\n\r\n", doc.Sentences.ToArray());
             //string temp = GetAllVerbs(question);
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);

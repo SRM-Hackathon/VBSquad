@@ -116,3 +116,16 @@ C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Syste
 C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csprojResolveAssemblyReference.cache
 C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.dll
 C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.pdb
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csproj.App.config
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\OpenTextSummarizer.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Net.Http.Extensions.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Net.Http.Primitives.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\unirest-net.dll
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.xml
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Net.Http.Extensions.xml
+C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Net.Http.Primitives.xml
