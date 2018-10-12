@@ -4,7 +4,7 @@
         <name>Microsoft.Azure.CognitiveServices.Language.TextAnalytics</name>
     </assembly>
     <members>
-        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient">
+        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI">
             <summary>
             The Text Analytics API is a suite of text analytics web services built
             with best-in-class Microsoft machine learning algorithms. The API can
@@ -16,28 +16,34 @@
             https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.BaseUri">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.SerializationSettings">
             <summary>
             The base URI of the service.
             </summary>
-        </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.SerializationSettings">
             <summary>
             Gets or sets json serialization settings.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.DeserializationSettings">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.DeserializationSettings">
             <summary>
             Gets or sets json deserialization settings.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.Credentials">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.AzureRegion">
+            <summary>
+            Supported Azure regions for Cognitive Services endpoints. Possible
+            values include: 'westus', 'westeurope', 'southeastasia', 'eastus2',
+            'westcentralus', 'westus2', 'eastus', 'southcentralus',
+            'northeurope', 'eastasia', 'australiaeast', 'brazilsouth'
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.Credentials">
             <summary>
             Subscription credentials which uniquely identify client
             subscription.
             </summary>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.KeyPhrasesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.KeyPhrasesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a list of strings denoting the key talking points
             in the input text.
@@ -59,7 +65,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.DetectLanguageWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.DetectLanguageWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns the detected language and a numeric score between 0
             and 1.
@@ -78,7 +84,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.SentimentWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.SentimentWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a numeric score between 0 and 1.
             </summary>
@@ -100,7 +106,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient.EntitiesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI.EntitiesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a list of recognized entities in a given document.
             </summary>
@@ -121,6 +127,11 @@
             <param name='cancellationToken'>
             The cancellation token.
             </param>
+        </member>
+        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.AzureRegions">
+            <summary>
+            Defines values for AzureRegions.
+            </summary>
         </member>
         <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput.#ctor">
             <summary>
@@ -603,7 +614,7 @@
             Gets unique document identifier.
             </summary>
         </member>
-        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient">
+        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI">
             <summary>
             The Text Analytics API is a suite of text analytics web services built
             with best-in-class Microsoft machine learning algorithms. The API can
@@ -615,37 +626,45 @@
             https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.BaseUri">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.BaseUri">
             <summary>
             The base URI of the service.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.SerializationSettings">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.SerializationSettings">
             <summary>
             Gets or sets json serialization settings.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.DeserializationSettings">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.DeserializationSettings">
             <summary>
             Gets or sets json deserialization settings.
             </summary>
         </member>
-        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.Credentials">
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.AzureRegion">
+            <summary>
+            Supported Azure regions for Cognitive Services endpoints. Possible values
+            include: 'westus', 'westeurope', 'southeastasia', 'eastus2',
+            'westcentralus', 'westus2', 'eastus', 'southcentralus', 'northeurope',
+            'eastasia', 'australiaeast', 'brazilsouth'
+            </summary>
+        </member>
+        <member name="P:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.Credentials">
             <summary>
             Subscription credentials which uniquely identify client subscription.
             </summary>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Net.Http.DelegatingHandler[])">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.#ctor(System.Net.Http.DelegatingHandler[])">
             <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
+            Initializes a new instance of the TextAnalyticsAPI class.
             </summary>
             <param name='handlers'>
             Optional. The delegating handlers to add to the http client pipeline.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.#ctor(System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
             <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
+            Initializes a new instance of the TextAnalyticsAPI class.
             </summary>
             <param name='rootHandler'>
             Optional. The http client handler used to handle http transport.
@@ -654,40 +673,9 @@
             Optional. The delegating handlers to add to the http client pipeline.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Uri,System.Net.Http.DelegatingHandler[])">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.DelegatingHandler[])">
             <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
-            </summary>
-            <param name='baseUri'>
-            Optional. The base URI of the service.
-            </param>
-            <param name='handlers'>
-            Optional. The delegating handlers to add to the http client pipeline.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Thrown when a required parameter is null
-            </exception>
-        </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Uri,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
-            <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
-            </summary>
-            <param name='baseUri'>
-            Optional. The base URI of the service.
-            </param>
-            <param name='rootHandler'>
-            Optional. The http client handler used to handle http transport.
-            </param>
-            <param name='handlers'>
-            Optional. The delegating handlers to add to the http client pipeline.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Thrown when a required parameter is null
-            </exception>
-        </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.DelegatingHandler[])">
-            <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
+            Initializes a new instance of the TextAnalyticsAPI class.
             </summary>
             <param name='credentials'>
             Required. Subscription credentials which uniquely identify client subscription.
@@ -699,9 +687,9 @@
             Thrown when a required parameter is null
             </exception>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.#ctor(Microsoft.Rest.ServiceClientCredentials,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
             <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
+            Initializes a new instance of the TextAnalyticsAPI class.
             </summary>
             <param name='credentials'>
             Required. Subscription credentials which uniquely identify client subscription.
@@ -716,49 +704,12 @@
             Thrown when a required parameter is null
             </exception>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Uri,Microsoft.Rest.ServiceClientCredentials,System.Net.Http.DelegatingHandler[])">
-            <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
-            </summary>
-            <param name='baseUri'>
-            Optional. The base URI of the service.
-            </param>
-            <param name='credentials'>
-            Required. Subscription credentials which uniquely identify client subscription.
-            </param>
-            <param name='handlers'>
-            Optional. The delegating handlers to add to the http client pipeline.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Thrown when a required parameter is null
-            </exception>
-        </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.#ctor(System.Uri,Microsoft.Rest.ServiceClientCredentials,System.Net.Http.HttpClientHandler,System.Net.Http.DelegatingHandler[])">
-            <summary>
-            Initializes a new instance of the TextAnalyticsClient class.
-            </summary>
-            <param name='baseUri'>
-            Optional. The base URI of the service.
-            </param>
-            <param name='credentials'>
-            Required. Subscription credentials which uniquely identify client subscription.
-            </param>
-            <param name='rootHandler'>
-            Optional. The http client handler used to handle http transport.
-            </param>
-            <param name='handlers'>
-            Optional. The delegating handlers to add to the http client pipeline.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Thrown when a required parameter is null
-            </exception>
-        </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.Initialize">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.Initialize">
             <summary>
             Initializes client properties.
             </summary>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.KeyPhrasesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.KeyPhrasesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a list of strings denoting the key talking points in the
             input text.
@@ -795,7 +746,7 @@
             A response object containing the response body and response headers.
             </return>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.DetectLanguageWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.DetectLanguageWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns the detected language and a numeric score between 0 and 1.
             </summary>
@@ -828,7 +779,7 @@
             A response object containing the response body and response headers.
             </return>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.SentimentWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.SentimentWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a numeric score between 0 and 1.
             </summary>
@@ -865,7 +816,7 @@
             A response object containing the response body and response headers.
             </return>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClient.EntitiesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPI.EntitiesWithHttpMessagesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Threading.CancellationToken)">
             <summary>
             The API returns a list of recognized entities in a given document.
             </summary>
@@ -902,12 +853,12 @@
             A response object containing the response body and response headers.
             </return>
         </member>
-        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClientExtensions">
+        <member name="T:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPIExtensions">
             <summary>
-            Extension methods for TextAnalyticsClient.
+            Extension methods for TextAnalyticsAPI.
             </summary>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClientExtensions.KeyPhrasesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPIExtensions.KeyPhrasesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
             <summary>
             The API returns a list of strings denoting the key talking points in the
             input text.
@@ -929,7 +880,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClientExtensions.DetectLanguageAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPIExtensions.DetectLanguageAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.BatchInput,System.Threading.CancellationToken)">
             <summary>
             The API returns the detected language and a numeric score between 0 and 1.
             </summary>
@@ -947,7 +898,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClientExtensions.SentimentAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPIExtensions.SentimentAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
             <summary>
             The API returns a numeric score between 0 and 1.
             </summary>
@@ -969,7 +920,7 @@
             The cancellation token.
             </param>
         </member>
-        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsClientExtensions.EntitiesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsClient,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
+        <member name="M:Microsoft.Azure.CognitiveServices.Language.TextAnalytics.TextAnalyticsAPIExtensions.EntitiesAsync(Microsoft.Azure.CognitiveServices.Language.TextAnalytics.ITextAnalyticsAPI,Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models.MultiLanguageBatchInput,System.Threading.CancellationToken)">
             <summary>
             The API returns a list of recognized entities in a given document.
             </summary>
