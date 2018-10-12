@@ -16,3 +16,53 @@ textarea {
     max-width: 280px;
 }
 
+.floatRight{
+    float:right;
+    margin-left:20px
+}
+
+.floatRightMiddle{
+    height: 30px;
+    width: 40px;
+    border:1px solid #ff0000;
+    display:table-cell;
+    vertical-align: middle
+}
+
+.inputTextBox{
+    border: 1px solid #456879;
+	border-radius:10px;
+	height: 20px;
+	width: 230px;
+
+    background: transparent url('images/bg.jpg') no-repeat;
+	color : #747862;
+    padding:4px 8px;
+	margin-bottom:0px;
+}
+
+.processButton {
+  font-family: 'arial black';
+  color: #14396A !important;
+  font-size: 12px;
+  text-shadow: 1px 1px 0px #7CACDE;
+  box-shadow: 1px 1px 1px #BDE1F7;
+  padding: 10px 25px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid #3866A3;
+  background: #63B8EE;
+  background: linear-gradient(top,  #0CA3EE,  #0C6ECF);
+  background: -ms-linear-gradient(top,  #0CA3EE,  #0C6ECF);
+  background: -webkit-gradient(linear, left top, left bottom, from(#0CA3EE), to(#0C6ECF));
+  background: -moz-linear-gradient(top,  #0CA3EE,  #0C6ECF);
+}
+.processButton:hover {
+  color: #14396A !important;
+  background: #468CCF;
+  background: linear-gradient(top,  #5FADCF,  #4D3CEE);
+  background: -ms-linear-gradient(top,  #5FADCF,  #4D3CEE);
+  background: -webkit-gradient(linear, left top, left bottom, from(#5FADCF), to(#4D3CEE));
+  background: -moz-linear-gradient(top,  #5FADCF,  #4D3CEE);
+}
