@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QnABot</RootNamespace>
-    <AssemblyName>QnABot</AssemblyName>
+    <RootNamespace>LuisBot</RootNamespace>
+    <AssemblyName>LuisBot</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -75,12 +75,6 @@
     </Reference>
     <Reference Include="Microsoft.Bot.Builder.Azure, Version=3.15.2.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bot.Builder.Azure.3.15.2.2\lib\net46\Microsoft.Bot.Builder.Azure.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bot.Builder.CognitiveServices.LuisActionBinding, Version=1.1.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bot.Builder.CognitiveServices.1.1.7\lib\net46\Microsoft.Bot.Builder.CognitiveServices.LuisActionBinding.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bot.Builder.CognitiveServices.QnAMaker, Version=1.1.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Bot.Builder.CognitiveServices.1.1.7\lib\net46\Microsoft.Bot.Builder.CognitiveServices.QnAMaker.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bot.Builder.History, Version=3.15.2.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Bot.Builder.History.3.15.2.2\lib\net46\Microsoft.Bot.Builder.History.dll</HintPath>
@@ -174,13 +168,11 @@
   <ItemGroup>
     <Content Include="default.htm" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Dialogs\BasicQnAMakerDialog.cs" />
+    <Compile Include="Dialogs\BasicLuisDialog.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,9 +180,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
