@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<form action="Home/Process" method="post">
+    <input type="text" id="paraInputText" name="para" />
+    <textarea id="paraInputTextArea" name="para" rows="5" cols="100"></textarea>
+    <br />
+    <button type="submit" id="submitBtn" value="Process"></button>
+</form>*@
+
+<form action="Home/Process" method="post" id="inputForm">
+    <input type="text" name="para" id="paraInputText" ><br>
+</form>
+
+<button type="submit" form="inputForm" value="Submit">Submit</button>
