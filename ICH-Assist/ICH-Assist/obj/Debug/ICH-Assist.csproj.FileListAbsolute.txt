@@ -41,7 +41,6 @@ C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.We
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.Webpages.Razor.xml
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.Helpers.xml
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.Mvc.xml
-C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csprojResolveAssemblyReference.cache
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.dll
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.pdb
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Cloudmersive.APIClient.NET.NLP.dll
@@ -57,3 +56,4 @@ C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Res
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Azure.CognitiveServices.Language.TextAnalytics.xml
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Rest.ClientRuntime.xml
 C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\Microsoft.Rest.ClientRuntime.Azure.xml
+C:\A-SRM-Hackathon\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csprojResolveAssemblyReference.cache
