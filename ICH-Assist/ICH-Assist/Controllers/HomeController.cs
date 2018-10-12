@@ -14,6 +14,7 @@ using System.Net.Http;
 using System.Threading;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
 using System.Text;
+using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
 
 namespace ICH_Assist.Controllers
 {
@@ -26,8 +27,15 @@ namespace ICH_Assist.Controllers
         }
     }
 
-    
 
+    class ApiKeyServiceMicrosoftClientCredentials : ServiceClientCredentials
+    {
+        public override Task ProcessHttpRequestAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            request.Headers.Add("Ocp-Apim-Subscription-Key", "fef32bb02127432a95c19b51edf88757");
+            return base.ProcessHttpRequestAsync(request, cancellationToken);
+        }
+    }
 
     public class HomeController : Controller
     {
@@ -36,54 +44,120 @@ namespace ICH_Assist.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Process(string para,string question)
+        public async Task<ActionResult> Process(string para, string question)
         {
 
 
-            string temp = GetAllVerbs(question);
-            string adverbs = GetAllAdverbs(question);
-            string adjust = GetAllAdjective(question);
-            string extract = ExtractSentencesFromString(para);
+            //string temp = GetAllVerbs(question);
+            //string adverbs = GetAllAdverbs(question);
+            //string adjust = GetAllAdjective(question);
+            //string extract = ExtractSentencesFromString(para);
             string ques_proper_noun = "", ques_noun = "", ques_verb = "";
 
             string[] sentences = para.Split('.');
-            string[] occurances = { };
+            string[] occurances = new string[100];
             //Getting question info
-            string[] verbText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
-            string[] properNounText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
-            string[] nounText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
+            //string[] verbText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
+            //string[] properNounText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
+            //string[] nounText = {  "NNPS", "NNP", "NNS","NN" };
 
-            string ques_adverbs = replaceText(adverbs, verbText);
-            ques_verb = replaceText(temp, verbText);
-            ques_proper_noun= replaceText(GetAllProperNouns(question),properNounText);
-            ques_noun = replaceText(GetAllNouns(question), nounText);
-            ViewBag.Message = GetAllVerbs(question);
-            ViewBag.Message = GetAllProperNouns(question);
-            ViewBag.Message = GetAllNouns(question);
+            //string ques_adverbs = replaceText(adverbs, verbText);
+            //ques_verb = replaceText(temp, verbText);
+            //ques_proper_noun= replaceText(GetAllProperNouns(question),properNounText);
+            //ques_noun = replaceText(GetAllNouns(question), nounText);
 
 
+            string[] phrases = getPhrases(question);
             int i = 0;
-            if (!ques_proper_noun.Equals(""))
+            foreach (string sentenc in sentences)
             {
-               
-                    foreach (string sentenc in sentences)
+                foreach (string phrase in phrases)
+                    try
                     {
-                        if (sentenc.Contains(ques_proper_noun))
+                        if (sentenc.ToLower().Contains(phrase.ToLower()))
+                        {
                             occurances[i++] = sentenc;
+                        }
                     }
-               
-                
+                    catch (Exception e) { }
+
             }
+
+
+
+            //int i = 0;
+            //if (!ques_proper_noun.Equals(""))
+            //{
+
+            //        foreach (string sentenc in sentences)
+            //        {
+            //            if (sentenc.Contains(ques_proper_noun))
+            //                occurances[i++] = sentenc;
+            //        }
+
+
+            //}else if (!ques_noun.Equals(""))
+            //{
+
+            //        foreach (string sentenc in sentences)
+            //        {
+            //            if (sentenc.ToLower().Contains(ques_noun.ToLower()))
+            //                occurances[i++] = sentenc;
+            //        }
+
+
+            //}
             //Getting para info
             //ViewBag.Message = GetAllVerbs(occurances[j]);
             //ViewBag.Message = GetAllProperNouns(occurances[j]);
             //ViewBag.Message = GetAllNouns(occurances[j]);
+            StringBuilder output = new StringBuilder();
+            foreach (string sentenc in occurances)
+            {
+                output = output.Append(sentenc + "\n");
 
+            }
+
+            //Gonna search for its occurance of similar words in paragraph.
+
+            if (!output.ToString().Trim().Equals(""))
+            {
+                foreach (string phrase in phrases)
+                {
+                    string[] otherwords = await getSynonyms(phrase);
+                    int j = 0;
+                    foreach (string sentenc in sentences)
+                    {
+                        foreach (string word in otherwords)
+                            try
+                            {
+                                if (sentenc.ToLower().Contains(word.ToLower()))
+                                {
+                                    occurances[j++] = sentenc;
+                                }
+                            }
+                            catch (Exception e) { }
+
+                    }
+                    foreach (string sentenc in occurances)
+                    {
+                        output = output.Append(sentenc + "\n");
+
+                    }
+
+                }
+
+
+
+            }
+
+
+            ViewBag.Message = output;
             return View();
         }
-        public  string GetAllVerbs(string para)
+        public string GetAllVerbs(string para)
         {
-            
+
             //api key
             //29809699 - a20d - 448a - 85a8 - 83956f239c00
             Configuration.Default.AddApiKey("Apikey", "29809699-a20d-448a-85a8-83956f239c00");
@@ -96,7 +170,7 @@ namespace ICH_Assist.Controllers
                 // Get the verbs in a string
                 result = apiInstance.WordsPost(input);
                 Debug.WriteLine(result);
-                
+
             }
             catch (Exception e)
             {
@@ -107,9 +181,9 @@ namespace ICH_Assist.Controllers
         public string GetAllProperNouns(string para)
         {
 
-            
+
             Configuration.Default.AddApiKey("Apikey", "29809699-a20d-448a-85a8-83956f239c00");
-            
+
             var apiInstance = new WordsApi();
             var input = para;  // string | Input string
             string result = "";
@@ -123,7 +197,7 @@ namespace ICH_Assist.Controllers
             {
                 Debug.Print("Exception when calling WordsApi.WordsProperNouns: " + e.Message);
             }
-            
+
             return result;
         }
         public string GetAllNouns(string para)
@@ -139,7 +213,7 @@ namespace ICH_Assist.Controllers
             try
             {
                 // Get nouns in string
-                result=apiInstance.WordsNouns(input);
+                result = apiInstance.WordsNouns(input);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -156,7 +230,7 @@ namespace ICH_Assist.Controllers
             //29809699 - a20d - 448a - 85a8 - 83956f239c00
             // Configure API key authorization: Apikey
             Configuration.Default.AddApiKey("Apikey", "29809699-a20d-448a-85a8-83956f239c00");
-             var apiInstance = new WordsApi();
+            var apiInstance = new WordsApi();
             var input = para;  // string | Input string
             string result = "";
 
@@ -188,7 +262,7 @@ namespace ICH_Assist.Controllers
             try
             {
                 // Get adjectives in string
-               result=apiInstance.WordsAdjectives(input);
+                result = apiInstance.WordsAdjectives(input);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -223,9 +297,43 @@ namespace ICH_Assist.Controllers
         }
 
 
+        public string[] getPhrases(string para)
+        {
+
+            string[] phrases = new string[100];
+            // Create a client.
+            TextAnalyticsAPI client = new TextAnalyticsAPI(new ApiKeyServiceMicrosoftClientCredentials())
+            {
+                AzureRegion = AzureRegions.Southeastasia // example 
+            };
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            KeyPhraseBatchResult result2 = client.KeyPhrasesAsync(new MultiLanguageBatchInput(
+                        new List<MultiLanguageInput>()
+                        {
+                          //new MultiLanguageInput("en", "1", "????"),
+                          //new MultiLanguageInput("en", "2", "Fahrt nach Stuttgart und dann zum Hotel zu Fu."),
+                          //new MultiLanguageInput("en", "3", "My cat is stiff as a rock."),
+                          new MultiLanguageInput("en", "1", para+".")
+                        })).Result;
+
+            // Printing keyphrases
+            foreach (var document in result2.Documents)
+            {
+
+                int i = 0;
+                foreach (string keyphrase in document.KeyPhrases)
+                {
+                    phrases[i++] = keyphrase;
+
+                }
+            }
+            return phrases;
+        }
+
         public string replaceText(string sentence, string[] unwanted)
         {
-            
+
             StringBuilder builder = new StringBuilder(sentence);
             foreach (string unwant in unwanted)
             {
@@ -237,6 +345,26 @@ namespace ICH_Assist.Controllers
             builder.Replace("/", "");
             builder.Replace("\"", "");
             return builder.ToString();
+        }
+
+        public async Task<string[]> getSynonyms(string word)
+        {
+
+            string[] otherwords = new string[100];
+            using (HttpClient client = new HttpClient())
+            {
+
+
+                using (HttpResponseMessage response = await client.GetAsync("https://api.datamuse.com/words?rel_[syn]=" + word + "&max=4"))
+                {
+                    using (HttpContent content = response.Content)
+                    {
+                        string myContent = await content.ReadAsStringAsync();
+                        Console.WriteLine(myContent);
+                    }
+                }
+            }
+            return otherwords;
         }
     }
 }
