@@ -1,4 +1,4 @@
-﻿
+﻿@*@string para*@
 @{
     ViewBag.Title = "Process";
 }
@@ -10,8 +10,8 @@
    @ViewBag.SummarizedData.ToString()
 </p>
 <br /><br />
+<input type="hidden" id="OriginalData" name="OriginalData" value=@para>
 
-@Html.Hidden("OriginalData", (string)ViewBag.OriginalMessage();
 @*<p>
     <b>Summary : </b><br />
     @ViewBag.SummarizedData

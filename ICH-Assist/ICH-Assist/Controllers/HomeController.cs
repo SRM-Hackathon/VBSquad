@@ -17,6 +17,7 @@ using System.Text;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
 using OpenTextSummarizer;
 using System.IO;
+using ICH_Assist.Models;
 
 namespace ICH_Assist.Controllers
 {
@@ -299,12 +300,16 @@ namespace ICH_Assist.Controllers
                 }
 
             }
+            DataModel dataModel = new DataModel()
+            {
+                StructuredData = summarizedDocument.Sentences[0],
+                UnstructuredData = para
+            };
 
-
-            ViewBag.SummarizedData = summarizedDocument;
-            ViewBag.OriginalMessage = para;
+            //ViewBag.SummarizedData = summarizedDocument;
+            //ViewBag.OriginalMessage = para;
             ViewBag.Message = output;
-            return View();
+            return View("ProcessResult", dataModel);
         }
         public string GetAllVerbs(string para)
         {
