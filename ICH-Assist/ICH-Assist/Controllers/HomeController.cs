@@ -66,7 +66,8 @@ namespace ICH_Assist.Controllers
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);
             //string extract = ExtractSentencesFromString(para);
-            string properNoun = "";
+            string properNoun;
+            string noun;
             
             //string ques_proper_noun = "", ques_noun = "", ques_verb = "";
 
@@ -75,21 +76,35 @@ namespace ICH_Assist.Controllers
             //Getting question info
             //string[] verbText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
             string[] properNounText = {"NNPS", "NNP", "NNS","NN" };
-            //string[] nounText = {  "NNPS", "NNP", "NNS","NN" };
+            string[] nounText = {  "NNPS", "NNP", "NNS","NN" };
 
-            //string ques_adverbs = replaceText(adverbs, verbText);
+             //string ques_adverbs = replaceText(adverbs, verbText);
             //ques_verb = replaceText(temp, verbText);
-            string questionwithoutProper = "";
-            if (properNoun != null)
+            StringBuilder builder = new StringBuilder(question);
+            string questionwithoutNouns = "";
+            properNoun = replaceText(GetAllProperNouns(question), properNounText);
+            if (!properNoun.Trim().Equals(""))
             {
-                properNoun = replaceText(GetAllProperNouns(question), properNounText);
-                questionwithoutProper = question.Replace(properNoun, "");
+               builder =builder.Replace(properNoun, "");
+            }
+            noun = replaceText(GetAllNouns(question), nounText);
+            if (!noun.Trim().Equals(""))
+            {
+                builder = builder.Replace(noun, "");
             }
 
+            questionwithoutNouns = builder.ToString();
+            string argument;
             //ques_noun = replaceText(GetAllNouns(question), nounText);
-
-
-            string[] phrases = getPhrases(questionwithoutProper);
+            if (questionwithoutNouns != null)
+            {
+                argument = questionwithoutNouns;
+            }
+            else
+            {
+                argument = question;
+            }
+            string[] phrases = getPhrases(argument);
             int i = 0;
             foreach (string sentenc in sentences)
             {
@@ -244,8 +259,37 @@ namespace ICH_Assist.Controllers
                 }
 
             }
-            ViewBag.SummarizedData = summarizedDocument;
-            ViewBag.OriginalMessage = para;
+
+            if (output.ToString().Equals(""))
+            {
+                int z = 0;
+                foreach (string sentenc in sentences)
+                {
+                    if (sentenc != null)
+                    {
+
+                        if (noun != null)
+                        {
+                            if (sentenc.ToLower().Contains(noun.ToLower()))
+                            {
+                                occurances[z++] = sentenc;
+                            }
+                        }
+                    }
+
+                }
+                foreach (string sentenc in occurances)
+
+                {
+                    if (sentenc != null)
+                        output = output.Append(sentenc + "\n");
+
+                }
+
+            }
+
+
+
             ViewBag.Message = output;
             return View();
         }
