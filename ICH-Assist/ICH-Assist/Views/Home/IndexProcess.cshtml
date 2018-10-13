@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "IndexProcess";
+}
+
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scrolling Sticky Menu With Bootstrap</title>
+    <meta name="description" content="Single page website template with a fixed menu and full width page sections that adjust to the height of the browser. The current page is highlighted">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="_style.css">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="_script.js"></script>
+</head>
+<body>
+    <div class="headline">
+        <div>
+            <a href="/" id="logo">HTML5 Templates</a>
+            <div class="description">
+                <h1>add summarization text..</h1>
+                <form action="Home/Process" method="post" id="inputForm">
+                    @*<input class="inputTextBox" type="text" name="para" id="paraInputText"><br><br>*@
+                    <textarea class="inputTextBox" type="text" name="para" id="paraInputText"></textarea><br /><br />
+                    @*<input type="text" name="question" id="questionInputText"><br>*@
+                </form>
+                <button type="submit" form="inputForm" value="Submit" class="processButton k-button">Submit</button>
+            </div>
+        </div>
+        <div id="devices">
+            <a id="desktop" class="active" title="Desktop view"> </a>
+            <a id="tablet" title="Tablet view"> </a>
+            <a id="tabletl" title="Tablet landscape view"> </a>
+            <a id="mobile" title="Mobile view"> </a>
+            <a id="mobilel" title="Mobile landscape view"> </a>
+        </div>
+        <a class="download" title="Zip package" href="https://html5-templates.com/download/bootstrap-scrolling-sticky-menu.zip">Download</a>
+        <a class="closeheader" title="Hide header">➤</a>
+        <div class="clearboth">
+        </div>
+    </div>
+    </div>
+    <div id="mainWrapper" style="height: 257px;">
+        <div id="device">
+            <div id="wrapIframe">
+                <iframe id="demoFrame" src="https://html5-templates.com/demo/bootstrap-scrolling-sticky-menu/">Iframes not supported</iframe>
+            </div>
+        </div>
+    </div>
+    <div id="footerke">
+        <span>© This template can be downloaded and edited for free as long as you're linking back to html5-templates.com</span>
+        <span class="mobileOnly">© HTML5-Templates.com</span>
+    </div>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-100718332-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+</body>
+</html>

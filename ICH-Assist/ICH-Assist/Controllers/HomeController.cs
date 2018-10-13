@@ -15,9 +15,8 @@ using System.Threading;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
 using System.Text;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-using unirest_net.http;
 using OpenTextSummarizer;
-using System.IO;
+using System.IO
 
 namespace ICH_Assist.Controllers
 {
@@ -49,7 +48,6 @@ namespace ICH_Assist.Controllers
         [HttpPost]
         public async Task<ActionResult> Process(string para, string question)
         {
-            
             StreamWriter sw1 = new StreamWriter(Server.MapPath(@"~\Content\SampleText.txt"));
             sw1.Flush();
             sw1.Close();
@@ -64,9 +62,6 @@ namespace ICH_Assist.Controllers
                     MaxSummarySentences = 500
                 });
 
-            //SummarizedDocument doc = Summarizer.Summarize(sumargs);
-
-            //string summary = string.Join("\r\n\r\n", doc.Sentences.ToArray());
             //string temp = GetAllVerbs(question);
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);
@@ -90,15 +85,21 @@ namespace ICH_Assist.Controllers
             int i = 0;
             foreach (string sentenc in sentences)
             {
-                foreach (string phrase in phrases)
-                    try
-                    {
-                        if (sentenc.ToLower().Contains(phrase.ToLower()))
+                if (sentenc != null)
+                {
+                    foreach (string phrase in phrases)
+                        try
                         {
-                            occurances[i++] = sentenc;
+                            if (phrase != null)
+                            {
+                                if (sentenc.ToLower().Contains(phrase.ToLower()))
+                                {
+                                    occurances[i++] = sentenc;
+                                }
+                            }
                         }
-                    }
-                    catch (Exception e) { }
+                        catch (Exception e) { }
+                }
 
             }
 
@@ -132,36 +133,74 @@ namespace ICH_Assist.Controllers
             //ViewBag.Message = GetAllNouns(occurances[j]);
             StringBuilder output = new StringBuilder();
             foreach (string sentenc in occurances)
+
             {
-                output = output.Append(sentenc + "\n");
+                if (sentenc != null)
+                    output = output.Append(sentenc + "\n");
 
             }
 
             //Gonna search for its occurance of similar words in paragraph.
-
-            if (!output.ToString().Trim().Equals(""))
+            int j = 0;
+            if (output.ToString().Trim().Equals(""))
             {
                 foreach (string phrase in phrases)
                 {
-                    string[] otherwords = await getSynonyms(phrase);
-                    int j = 0;
-                    foreach (string sentenc in sentences)
+                    if (phrase != null && j == 0)
                     {
-                        foreach (string word in otherwords)
-                            try
+                        string[] otherwords = await getSynonyms(phrase);
+
+                        for (int x = 0; x < otherwords.Length; x++)
+
+                        {
+                            string word = otherwords[x];
+                            if (word != null && j == 0)
                             {
-                                if (sentenc.ToLower().Contains(word.ToLower()))
+
+                                if ((j > 0) && (x > 5))
                                 {
-                                    occurances[j++] = sentenc;
+                                    break;
+                                }
+                                else if ((j > 10) && (x > 5))
+                                {
+                                    break;
+                                }
+
+
+                                foreach (string sentenc in sentences)
+                                {
+                                    if (sentenc != null)
+                                    {
+                                        if (sentenc.ToLower().Contains(word.ToLower()))
+                                        {
+
+                                            occurances[j++] = sentenc;
+
+                                        }
+                                    }
                                 }
                             }
-                            catch (Exception e) { }
 
+                        }
                     }
-                    foreach (string sentenc in occurances)
+                    for (int y = 0; y < 10; y++)
                     {
-                        output = output.Append(sentenc + "\n");
+                        string sentenc = occurances[y];
+                        if (sentenc != null)
+                        {
+                            int ok = 1;
 
+                            if (output.ToString().Contains(sentenc))
+                            {
+                                ok = 0;
+                            }
+
+
+                            if (ok == 1)
+                            {
+                                output = output.Append(sentenc + "\n");
+                            }
+                        }
                     }
 
                 }
@@ -368,19 +407,38 @@ namespace ICH_Assist.Controllers
 
         public async Task<string[]> getSynonyms(string word)
         {
-
-            string[] otherwords = new string[100];
+            string myContent = "";
+            string[] otherwords = new string[20];
             using (HttpClient client = new HttpClient())
             {
 
-
-                using (HttpResponseMessage response = await client.GetAsync("https://api.datamuse.com/words?rel_[syn]=" + word + "&max=4"))
+                int j = 0;
+                using (HttpResponseMessage response = await client.GetAsync("https://api.datamuse.com/words?ml=" + word + "&rel_[syn]"))
                 {
                     using (HttpContent content = response.Content)
                     {
-                        string myContent = await content.ReadAsStringAsync();
+                        myContent = await content.ReadAsStringAsync();
+
+                        string[] temp = myContent.Split(',');
+                        for (int i = 0; (i < temp.Length && j < 20); i++)
+                        {
+                            if (temp[i].Contains("word") && (i > 2))
+                            {
+                                StringBuilder builder = new StringBuilder(temp[i]);
+                                builder.Replace(@"\", "");
+                                builder.Replace("/", "");
+                                builder.Replace("\"", "");
+                                builder.Replace("}", "");
+                                builder.Replace("{", "");
+                                builder.Replace(":", "");
+                                builder.Replace("word", "");
+                                otherwords[j++] = builder.ToString();
+                            }
+                        }
+
                         Console.WriteLine(myContent);
                     }
+
                 }
             }
             return otherwords;

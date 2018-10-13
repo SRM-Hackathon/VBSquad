@@ -3,43 +3,56 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Content Assist</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/all.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 </head>
-<body>
+
+<body class="bg">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header sticky">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Content Assist", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
         @*<div class="floatRightMiddle">
-            <img src='~/Content/left-arrow.png' style='float:right;' />
-        </div>*@
+                <img src='~/Content/left-arrow.png' style='float:right;' />
+            </div>*@
     </div>
     @*<div class="right-pane floatRight">
-        <img src="~/Content/left-arrow.png" alt="Flowers in Chania">
-    </div>*@
-    
-    <div class="container body-content">
+            <img src="~/Content/left-arrow.png" alt="Flowers in Chania">
+        </div>*@
+
+    <div class="container body-content inline-main">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            @*<p>@DateTime.Now.Year</p>*@
         </footer>
     </div>
-    @*<iframe src='https://webchat.botframework.com/embed/AssistBot04?s=z85vKvcICC4.cwA.pRw.Odiz_cGlD3fNEO7nbvjasA1RDKGVP7vexr2tahnY-K0' style='min-width: 300px; width: 30%; min-height: 300px;'></iframe>*@
+    @*<div>
+        @*<iframe src='https://webchat.botframework.com/embed/AssistBot04?s=z85vKvcICC4.cwA.pRw.Odiz_cGlD3fNEO7nbvjasA1RDKGVP7vexr2tahnY-K0' style='min-width: 300px; width: 30%; min-height: 300px;'></iframe>*@
+    @*<iframe src='https://webchat.botframework.com/embed/AssistBot04?s=z85vKvcICC4.cwA.pRw.Odiz_cGlD3fNEO7nbvjasA1RDKGVP7vexr2tahnY-K0' class="k-chat .k-message.k-state-selected k-bubble"></iframe>
+        </div>*@
+
+    @*<div id="webchat"></div>
+        <script src="https://cdn.botframework.com/botframework-webchat/preview/botchat.js"></script>
+        <script>
+          window.WebChat.renderWebChat({
+              directLine: window.WebChat.createDirectLine({ secret: 'z85vKvcICC4.cwA.pRw.Odiz_cGlD3fNEO7nbvjasA1RDKGVP7vexr2tahnY-K0' })
+          }, document.getElementById('webchat'));
+        </script>*@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
