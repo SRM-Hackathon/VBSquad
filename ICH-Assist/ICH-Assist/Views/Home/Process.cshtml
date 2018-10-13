@@ -7,11 +7,11 @@
 
 <p>
     <b>Summary : </b> <br />
-    @ViewBag.SummarizedData
+   @ViewBag.SummarizedData.ToString()
 </p>
 <br /><br />
 
-@Html.Hidden("OriginalData", (string)ViewBag.OriginalMessage);
+@Html.Hidden("OriginalData", (string)ViewBag.OriginalMessage();
 @*<p>
     <b>Summary : </b><br />
     @ViewBag.SummarizedData
