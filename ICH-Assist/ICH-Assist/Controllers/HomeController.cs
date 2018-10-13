@@ -244,7 +244,8 @@ namespace ICH_Assist.Controllers
                 }
 
             }
-
+            ViewBag.SummarizedData = summarizedDocument;
+            ViewBag.OriginalMessage = para;
             ViewBag.Message = output;
             return View();
         }
