@@ -198,6 +198,5 @@ C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\S
 C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.Helpers.xml
 C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\bin\System.Web.Mvc.xml
 C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csproj.App.config
-C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.csprojResolveAssemblyReference.cache
 C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.dll
 C:\Users\M1039179\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\obj\Debug\ICH-Assist.pdb
