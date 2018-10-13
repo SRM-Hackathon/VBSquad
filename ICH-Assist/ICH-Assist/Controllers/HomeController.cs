@@ -63,7 +63,19 @@ namespace ICH_Assist.Controllers
                     Language = "datasets",
                     MaxSummarySentences = 500
                 });
+            DataModel dataModel = new DataModel()
+            {
+                StructuredData = summarizedDocument.Sentences[0],
+                UnstructuredData = para
+            };
 
+            //ViewBag.SummarizedData = summarizedDocument;
+            //ViewBag.OriginalMessage = para;
+            return View("ProcessResult", dataModel);
+        }
+        [HttpPost]
+        public async Task<ActionResult> ProcessQuery(string para, string question)
+        {
             //string temp = GetAllVerbs(question);
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);
@@ -300,16 +312,8 @@ namespace ICH_Assist.Controllers
                 }
 
             }
-            DataModel dataModel = new DataModel()
-            {
-                StructuredData = summarizedDocument.Sentences[0],
-                UnstructuredData = para
-            };
-
-            //ViewBag.SummarizedData = summarizedDocument;
-            //ViewBag.OriginalMessage = para;
             ViewBag.Message = output;
-            return View("ProcessResult", dataModel);
+            return PartialView();
         }
         public string GetAllVerbs(string para)
         {

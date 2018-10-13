@@ -93,9 +93,36 @@ textarea {
 
 
 .bg {
-    background-image: url("https://www.xmple.com/wallpaper/white-blue-gradient-linear-1920x1080-c2-add8e6-f0fff0-a-120-f-14.svg");
+    /*background-image: url("https://www.xmple.com/wallpaper/white-blue-gradient-linear-1920x1080-c2-add8e6-f0fff0-a-120-f-14.svg");*/
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: auto;
+}
+
+.testbutton {
+  font-family: arial;
+  font-weight: bold;
+  color: #0D0D0D !important;
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #7CACDE;
+  box-shadow: 1px 1px 1px #BEE2F9;
+  padding: 10px 25px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #5198CF;
+  background: #1CFFF0;
+  background: linear-gradient(top,  #256EB8,  #5D8ECF);
+  background: -ms-linear-gradient(top,  #256EB8,  #5D8ECF);
+  background: -webkit-gradient(linear, left top, left bottom, from(#256EB8), to(#5D8ECF));
+  background: -moz-linear-gradient(top,  #256EB8,  #5D8ECF);
+}
+.testbutton:hover {
+  color: #14396A !important;
+  background: #468CCF;
+  background: linear-gradient(top,  #468CCF,  #63B8EE);
+  background: -ms-linear-gradient(top,  #468CCF,  #63B8EE);
+  background: -webkit-gradient(linear, left top, left bottom, from(#468CCF), to(#63B8EE));
+  background: -moz-linear-gradient(top,  #468CCF,  #63B8EE);
 }
