@@ -16,7 +16,7 @@ using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
 using System.Text;
 using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
 using OpenTextSummarizer;
-using System.IO
+using System.IO;
 
 namespace ICH_Assist.Controllers
 {
@@ -66,22 +66,30 @@ namespace ICH_Assist.Controllers
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);
             //string extract = ExtractSentencesFromString(para);
-            string ques_proper_noun = "", ques_noun = "", ques_verb = "";
+            string properNoun = "";
+            
+            //string ques_proper_noun = "", ques_noun = "", ques_verb = "";
 
             string[] sentences = para.Split('.');
             string[] occurances = new string[100];
             //Getting question info
             //string[] verbText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
-            //string[] properNounText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
+            string[] properNounText = {"NNPS", "NNP", "NNS","NN" };
             //string[] nounText = {  "NNPS", "NNP", "NNS","NN" };
 
             //string ques_adverbs = replaceText(adverbs, verbText);
             //ques_verb = replaceText(temp, verbText);
-            //ques_proper_noun= replaceText(GetAllProperNouns(question),properNounText);
+            string questionwithoutProper = "";
+            if (properNoun != null)
+            {
+                properNoun = replaceText(GetAllProperNouns(question), properNounText);
+                questionwithoutProper = question.Replace(properNoun, "");
+            }
+
             //ques_noun = replaceText(GetAllNouns(question), nounText);
 
 
-            string[] phrases = getPhrases(question);
+            string[] phrases = getPhrases(questionwithoutProper);
             int i = 0;
             foreach (string sentenc in sentences)
             {
@@ -209,6 +217,33 @@ namespace ICH_Assist.Controllers
 
             }
 
+            if (output.ToString().Equals(""))
+            {
+                int z = 0;
+                foreach (string sentenc in sentences)
+                {
+                    if (sentenc != null)
+                    {
+
+                        if (properNoun != null)
+                        {
+                            if (sentenc.ToLower().Contains(properNoun.ToLower()))
+                            {
+                                occurances[z++] = sentenc;
+                            }
+                        }
+                    }      
+
+                }
+                foreach (string sentenc in occurances)
+
+                {
+                    if (sentenc != null)
+                        output = output.Append(sentenc + "\n");
+
+                }
+
+            }
 
             ViewBag.Message = output;
             return View();

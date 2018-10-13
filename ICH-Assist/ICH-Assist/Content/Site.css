@@ -75,9 +75,9 @@ textarea {
 }
 
 .inline-main {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
+    margin-left: 250px;
+    margin-right: 200px;
+    margin-top: 80px;
     border: solid;
     -moz-border-radius: 0 0 10px 10px;
     -webkit-border-radius: 0 0 10px 10px;
@@ -93,9 +93,9 @@ textarea {
 
 
 .bg {
-    background-image: url("C:\Users\Home\Source\Repos\SRM-Hackathon\VBSquad\ICH-Assist\ICH-Assist\Content\page-backgroundimg_girl.jpg");
+    background-image: url("https://www.xmple.com/wallpaper/white-blue-gradient-linear-1920x1080-c2-add8e6-f0fff0-a-120-f-14.svg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
