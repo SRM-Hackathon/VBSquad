@@ -312,7 +312,13 @@ namespace ICH_Assist.Controllers
                 }
 
             }
-            ViewBag.Message = output;
+
+            if (output.ToString().Trim().Equals(""))
+            {
+                output = output.Append("Could not match your request..");
+            }
+
+                ViewBag.Message = output;
             return PartialView();
         }
         public string GetAllVerbs(string para)
