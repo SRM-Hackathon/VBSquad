@@ -54,6 +54,7 @@ namespace ICH_Assist.Controllers
             StreamWriter sw2 = new StreamWriter(Server.MapPath(@"~\Content\SampleText.txt"));
             sw2.Write(para);
             sw2.Close();
+
             var summarizedDocument = OpenTextSummarizer.Summarizer.Summarize(
                 new OpenTextSummarizer.FileContentProvider(Server.MapPath(@"~\Content\SampleText.txt")),
                 new SummarizerArguments()
@@ -66,31 +67,38 @@ namespace ICH_Assist.Controllers
             //string adverbs = GetAllAdverbs(question);
             //string adjust = GetAllAdjective(question);
             //string extract = ExtractSentencesFromString(para);
-            string properNoun;
-            string noun;
-            
             //string ques_proper_noun = "", ques_noun = "", ques_verb = "";
 
+            string properNoun;
+            string noun;
             string[] sentences = para.Split('.');
             string[] occurances = new string[100];
             //Getting question info
             //string[] verbText = {  "VBN", "VBG", "VBP", "VBZ", "VBD", "VB" };
-            string[] properNounText = {"NNPS", "NNP", "NNS","NN" };
-            string[] nounText = {  "NNPS", "NNP", "NNS","NN" };
+            string[] properNounText = { "NNPS", "NNP", "NNS", "NN" };
+            string[] nounText = { "NNPS", "NNP", "NNS", "NN" };
 
-             //string ques_adverbs = replaceText(adverbs, verbText);
+            //string ques_adverbs = replaceText(adverbs, verbText);
             //ques_verb = replaceText(temp, verbText);
             StringBuilder builder = new StringBuilder(question);
             string questionwithoutNouns = "";
             properNoun = replaceText(GetAllProperNouns(question), properNounText);
             if (!properNoun.Trim().Equals(""))
             {
-               builder =builder.Replace(properNoun, "");
+                builder = builder.Replace(properNoun, "");
             }
             noun = replaceText(GetAllNouns(question), nounText);
             if (!noun.Trim().Equals(""))
             {
-                builder = builder.Replace(noun, "");
+                if (noun.Contains(","))
+                {
+                    builder = builder.Replace(noun.Split(',')[0], "");
+                }
+                else
+                {
+                    builder = builder.Replace(noun, "");
+                }
+
             }
 
             questionwithoutNouns = builder.ToString();
@@ -154,6 +162,8 @@ namespace ICH_Assist.Controllers
             //ViewBag.Message = GetAllVerbs(occurances[j]);
             //ViewBag.Message = GetAllProperNouns(occurances[j]);
             //ViewBag.Message = GetAllNouns(occurances[j]);
+
+            //Gonna search for its phrases occurance in paragraph
             StringBuilder output = new StringBuilder();
             foreach (string sentenc in occurances)
 
@@ -232,6 +242,7 @@ namespace ICH_Assist.Controllers
 
             }
 
+            //Gonna search for propernoun occurance in paragraph
             if (output.ToString().Equals(""))
             {
                 int z = 0;
@@ -247,7 +258,7 @@ namespace ICH_Assist.Controllers
                                 occurances[z++] = sentenc;
                             }
                         }
-                    }      
+                    }
 
                 }
                 foreach (string sentenc in occurances)
@@ -260,6 +271,7 @@ namespace ICH_Assist.Controllers
 
             }
 
+            //Gonna search for noun occurance in paragraph
             if (output.ToString().Equals(""))
             {
                 int z = 0;
@@ -287,7 +299,6 @@ namespace ICH_Assist.Controllers
                 }
 
             }
-
 
 
             ViewBag.SummarizedData = summarizedDocument;
